@@ -36,19 +36,19 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
 
-        // POST api/<EmployeeController>
-        [HttpPost("addCar")]
-        public IActionResult RespondToMessage([FromBody] Message message)
-        {
+        //// POST api/<EmployeeController>
+        //[HttpPost("addCar")]
+        //public IActionResult RespondToMessage([FromBody] Message message)
+        //{
           
-        }
+        //}
 
 
-        // POST api/<EmployeeController>
-        [HttpPost("addCar")]
-        public IActionResult TransferCar([FromBody] Car car)
-        {
+        //// POST api/<EmployeeController>
+        //[HttpPost("addCar")]
+        //public IActionResult TransferCar([FromBody] Car car)
+        //{
          
-        }
+        //}
     }
 }

@@ -19,11 +19,11 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         // GET api/<ServiceController>/5
-        [HttpGet("recommendations/{carId}")]
-        //public IActionResult GetServiceRecommendations(int carId)
-        //{
-        //    try currentMileage = _carService.GetCu
-        //} ADD GETCURRENTMILEAGE TO MODEL OR CONTROLLER SO IT CAN GIVE RECOMMENRDATION EVERY 5K MILES.
+        //[HttpGet("recommendations/{carId}")]
+        ////public IActionResult GetServiceRecommendations(int carId)
+        ////{
+        ////    try currentMileage = _carService.GetCu
+        ////} ADD GETCURRENTMILEAGE TO MODEL OR CONTROLLER SO IT CAN GIVE RECOMMENRDATION EVERY 5K MILES.
 
         // POST api/<ServiceController>
         [HttpPost("{carId}/schedule")]
@@ -34,6 +34,6 @@ namespace FullStackAuth_WebAPI.Controllers
             return StatusCode(201, service);
         }
 
-  \
+  
     }
 }
