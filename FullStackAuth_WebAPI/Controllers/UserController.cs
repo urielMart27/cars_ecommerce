@@ -18,17 +18,20 @@ namespace FullStackAuth_WebAPI.Controllers
       
         // GET api/<UserController>/5
         [HttpGet("{userId}/favorites")]
-        //public IActionResult GetFavorites(int userId)
-        //{        }
+        public IActionResult GetFavorites(int userId)
+        {
+            var favorites = _context.Favorites.ToList();
+            return StatusCode(200, favorites);
+        }
 
 
         // POST api/<UserController>
         [HttpPost("{userId}/favorites")]
-        public IActionResult AddToFavorites([FromBody] Car car)
+        public IActionResult AddToFavorites([FromBody] Favorite favorite)
         {
-            _context.Cars.Add(car);
+            _context.Favorites.Add(favorite);
             _context.SaveChanges();
-            return StatusCode(201, car);
+            return StatusCode(201, favorite);
         }
 
    
