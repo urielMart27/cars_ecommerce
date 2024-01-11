@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import NewCarPage from "./pages/NewCarPage/NewCarPage";
+import CarDetailsPage from "./pages/CarDetailsPage/CarDetailsPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/newcar" element={<NewCarPage/>}/>
+        <Route path="/cardetails" element={<CarDetailsPage/>}/>
       </Routes>
       <Footer />
     </div>

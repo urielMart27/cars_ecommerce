@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const CarDetails = ({}) => {
+const CarDetails = ({ make }) => {
   return (
     <div>
-      <h4>2008 Audi A6</h4>
+      <h4>2008 {make} A6</h4>
       <div>
         <div>
           <span>Mileage</span>
