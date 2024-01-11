@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const CarDetails = ({ make }) => {
+const CarDetails = ({ carObj }) => {
   return (
     <div>
-      <h4>2008 {make} A6</h4>
+      <h4>
+        {carObj.year} {carObj.make} {carObj.model}
+      </h4>
       <div>
         <div>
           <span>Mileage</span>
-          <span>120,000</span>
+          <span>{carObj.mileage}</span>
         </div>
         <div>
           <span>Price</span>
-          <span>$10,500</span>
+          <span>{carObj.price}</span>
         </div>
       </div>
     </div>
