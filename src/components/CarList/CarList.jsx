@@ -9,8 +9,6 @@ const CarList = ({ cars, setCars, activeIndex, setActiveIndex }) => {
       make={car.make}
       model={car.model}
       year={car.year}
-      mileage={car.mileage}
-      price={car.price}
       thumbnailUrl={car.thumbnailUrl}
       activeIndex={activeIndex}
       setActiveIndex={setActiveIndex}

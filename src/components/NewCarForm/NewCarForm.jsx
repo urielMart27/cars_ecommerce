@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const NewCarForm = ({}) => {
   const [make, setMake] = useState("");
@@ -6,19 +7,28 @@ const NewCarForm = ({}) => {
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
   const [mileage, setMileage] = useState("");
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = {
       make,
       model,
       year,
       price,
       mileage,
+      thumbnailUrl,
     };
+    try {
+      const response = await axios.post(
+        "https://localhost:5001/api/employee/addCar",
+        formData
+      );
+    } catch (error) {
+      console.warn("Error submitting new car form: ", error);
+    }
   };
-
-  console.log(make);
   return (
     <form onSubmit={handleSubmit}>
       <h4>Add New Car</h4>
@@ -41,6 +51,13 @@ const NewCarForm = ({}) => {
       <div>
         <label>Mileage</label>
         <input value={mileage} onChange={(e) => setMileage(e.target.value)} />
+      </div>
+      <div>
+        <label>Thumbnail Url</label>
+        <input
+          value={thumbnailUrl}
+          onChange={(e) => setThumbnailUrl(e.target.value)}
+        />
       </div>
       <button type="submit">Add Car</button>
     </form>
