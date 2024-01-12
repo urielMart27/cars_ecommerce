@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const CarDetails = ({ carObj }) => {
+  console.log(carObj);
   return (
     <div>
       <h4>
