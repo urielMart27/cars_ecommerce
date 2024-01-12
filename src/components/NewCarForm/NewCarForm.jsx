@@ -28,19 +28,19 @@ const NewCarForm = ({}) => {
       </div>
       <div>
         <label>Model</label>
-        <input value={model} onChange={(e) => setMake(e.target.value)} />
+        <input value={model} onChange={(e) => setModel(e.target.value)} />
       </div>
       <div>
         <label>Year</label>
-        <input value={year} onChange={(e) => setMake(e.target.value)} />
+        <input value={year} onChange={(e) => setYear(e.target.value)} />
       </div>
       <div>
         <label>Price</label>
-        <input value={price} onChange={(e) => setMake(e.target.value)} />
+        <input value={price} onChange={(e) => setPrice(e.target.value)} />
       </div>
       <div>
         <label>Mileage</label>
-        <input value={mileage} onChange={(e) => setMake(e.target.value)} />
+        <input value={mileage} onChange={(e) => setMileage(e.target.value)} />
       </div>
       <button type="submit">Add Car</button>
     </form>

@@ -6,6 +6,9 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import NewCarPage from "./pages/NewCarPage/NewCarPage";
+import CarDetailsPage from "./pages/CarDetailsPage/CarDetailsPage";
+import CarInventoryPage from "./pages/CarInventoryPage/CarInventoryPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -13,8 +16,7 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import NewCarPage from "./pages/NewCarPage/NewCarPage";
-import CarDetailsPage from "./pages/CarDetailsPage/CarDetailsPage";
+import axios from "axios";
 
 function App() {
   return (
@@ -31,8 +33,9 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/newcar" element={<NewCarPage/>}/>
-        <Route path="/cardetails" element={<CarDetailsPage/>}/>
+        <Route path="/newcar" element={<NewCarPage />} />
+        <Route path="/cardetails" element={<CarDetailsPage />} />
+        <Route path="/inventory" element={<CarInventoryPage />} />
       </Routes>
       <Footer />
     </div>

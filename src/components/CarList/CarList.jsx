@@ -1,35 +1,42 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import Car from "../../components/Car/Car";
 
-const CarList = () => {
-  const [cars, setCars] = useState();
+const CarList = ({ cars, setCars, activeIndex, setActiveIndex }) => {
+  const carItems = cars.map((car, i) => (
+    <Car
+      key={car.id}
+      make={car.make}
+      model={car.model}
+      year={car.year}
+      mileage={car.mileage}
+      price={car.price}
+      thumbnailUrl={car.thumbnailUrl}
+      activeIndex={activeIndex}
+      setActiveIndex={setActiveIndex}
+      index={i}
+    />
+  ));
 
+  const GetAllCars = async () => {
+    try {
+      const response = await axios.get("https://localhost:5001/api/cars");
+      // console.log(response);
+      setCars(response.data);
+    } catch (error) {
+      console.warn("Error in GetAllCars request", error);
+    }
+  };
   useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        const response = await axios.get("/api/cars");
-        setCars(response.data);
-      } catch (error) {
-        console.error("Error fetching list of cars:", error);
-      }
-    };
-    fetchCars();
+    GetAllCars();
   }, []);
+
   return (
     <div>
-      <h2>Cars</h2>
-      <ul>
-        {cars.map((car) => (
-          <li key={car.id}>
-            <p>
-              {car.make} {car.model} ({car.year})
-            </p>
-            <p>
-              {car.price} {car.mileage}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <h4>Cars</h4>
+      <div>
+        <div>{carItems}</div>
+      </div>
     </div>
   );
 };

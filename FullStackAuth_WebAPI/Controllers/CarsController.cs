@@ -14,17 +14,17 @@ namespace FullStackAuth_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class CarsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CarController(ApplicationDbContext context)
+        public CarsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: api/carDetails
-        [HttpGet, Authorize]
+        [HttpGet]
         public IActionResult GetAllCars()
         {
             var cars = _context.Cars.ToList();
