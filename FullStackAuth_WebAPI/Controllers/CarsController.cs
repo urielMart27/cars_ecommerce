@@ -32,7 +32,7 @@ namespace FullStackAuth_WebAPI.Controllers
             
         }
 
-        [HttpGet("{id}"), Authorize]
+        [HttpGet("{id}")]
         public IActionResult GetCarDetails(int id)
         {
             var car = _context.Cars.Find(id);

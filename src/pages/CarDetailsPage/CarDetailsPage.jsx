@@ -1,17 +1,29 @@
+import { useParams } from "react-router-dom";
 import CarDetails from "../../components/CarDetails/CarDetails";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 const CarDetailsPage = () => {
-  const selectedCar = {
-    make: "Audi",
-    model: "A6",
-    year: 2008,
-    mileage: 120000,
-    price: 10500,
+  const { id } = useParams();
+  const [carDetails, setCarDetails] = useState(null);
+
+  const getCarDetails = async () => {
+    try {
+      const response = await axios.get(`https://localhost:5001/api/cars/${id}`);
+      setCarDetails(response.data);
+    } catch (error) {
+      console.warn("Error in getCarDetails request", error);
+    }
   };
+
+  useEffect(() => {
+    getCarDetails();
+  }, [id]);
+
   return (
     <div>
       <h2>Details</h2>
-      <CarDetails carObj={selectedCar} />
+      <CarDetails carObj={carDetails} />
     </div>
   );
 };
