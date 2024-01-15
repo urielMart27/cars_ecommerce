@@ -8,15 +8,22 @@ namespace FullStackAuth_WebAPI.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        public string Make { get; set; }
+
+        [Required]
+        public string Model { get; set; }
+
+        [Required]
+        public int Year { get; set; }
+
+        [Required]
+        public string ThumbnailUrl { get; set; }
+
         [ForeignKey("User")]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("Car")]
-        public int CarId { get; set; }
-        public Car Car { get; set; }
-
-        [Required]
-        public string ThumbnailUrl { get; set; }
+       
     }
 }

@@ -198,6 +198,29 @@ namespace FullStackAuth_WebAPI.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Favorites",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Make = table.Column<string>(type: "longtext", nullable: false),
+                    Model = table.Column<string>(type: "longtext", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    ThumbnailUrl = table.Column<string>(type: "longtext", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favorites", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Favorites_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
@@ -220,33 +243,6 @@ namespace FullStackAuth_WebAPI.Migrations
                         name: "FK_Messages_AspNetUsers_SenderId",
                         column: x => x.SenderId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Favorites",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true),
-                    CarId = table.Column<int>(type: "int", nullable: false),
-                    ThumbnailUrl = table.Column<string>(type: "longtext", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Favorites", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Favorites_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Favorites_Cars_CarId",
-                        column: x => x.CarId,
-                        principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -311,8 +307,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0562f9d7-573a-4121-b571-da70cb89e8b7", null, "Admin", "ADMIN" },
-                    { "aec6d31a-45ba-44c7-98cd-089101ef9213", null, "User", "USER" }
+                    { "304fff50-f0bd-4c11-9250-07a9d320e6fd", null, "User", "USER" },
+                    { "7d391df4-2214-4ed0-93bd-b01ce078a6aa", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -356,11 +352,6 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "IX_Cars_OwnertId",
                 table: "Cars",
                 column: "OwnertId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Favorites_CarId",
-                table: "Favorites",
-                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Favorites_UserId",

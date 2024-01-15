@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240108230150_Init")]
+    [Migration("20240115172711_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -65,8 +65,13 @@ namespace FullStackAuth_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
+                    b.Property<string>("Make")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ThumbnailUrl")
                         .IsRequired()
@@ -75,9 +80,10 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CarId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -266,13 +272,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aec6d31a-45ba-44c7-98cd-089101ef9213",
+                            Id = "304fff50-f0bd-4c11-9250-07a9d320e6fd",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0562f9d7-573a-4121-b571-da70cb89e8b7",
+                            Id = "7d391df4-2214-4ed0-93bd-b01ce078a6aa",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -391,17 +397,9 @@ namespace FullStackAuth_WebAPI.Migrations
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Favorite", b =>
                 {
-                    b.HasOne("FullStackAuth_WebAPI.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Car");
 
                     b.Navigation("User");
                 });
