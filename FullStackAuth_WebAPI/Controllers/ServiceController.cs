@@ -26,7 +26,7 @@ namespace FullStackAuth_WebAPI.Controllers
         ////} ADD GETCURRENTMILEAGE TO MODEL OR CONTROLLER SO IT CAN GIVE RECOMMENRDATION EVERY 5K MILES.
 
         // POST api/<ServiceController>
-        [HttpPost("{carId}/schedule")]
+        [HttpPost("{Id}")]
         public IActionResult ScheduleService([FromBody] Service service)
         {
             _context.Service.Add(service);

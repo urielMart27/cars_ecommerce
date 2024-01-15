@@ -17,6 +17,7 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import ServicePage from "./pages/ServicePage/ServicePage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/cardetails/:id" element={<CarDetailsPage />} />
         <Route path="/inventory" element={<CarInventoryPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/service" element={<ServicePage />} />
       </Routes>
       <Footer />
     </div>

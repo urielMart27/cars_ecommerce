@@ -7,7 +7,7 @@ const FavoritesList = ({ favorites }) => {
     <div>
       {favorites.map((favorite) => (
         <div key={favorite.id}>
-          <Link to={`/favorites/${favorites.id}`}>
+          <Link key={favorite.id} to={`/cardetails/${favorite.id}`}>
             <p>
               {favorite.make}
               {favorite.model}

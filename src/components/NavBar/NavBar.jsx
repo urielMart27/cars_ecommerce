@@ -17,6 +17,7 @@ const Navbar = () => {
           <Link to="/inventory">Inventory</Link>
           <Link to="/newcar">Add Car</Link>
           <Link to="/favorites">Favorites</Link>
+          <Link to="/service">Service</Link>
         </li>
         <li>
           {user ? (
