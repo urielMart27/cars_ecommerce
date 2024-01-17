@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace FullStackAuth_WebAPI
@@ -15,6 +16,8 @@ namespace FullStackAuth_WebAPI
     {
         public static void Main(string[] args)
         {
+         
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -40,7 +43,13 @@ namespace FullStackAuth_WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            
+            var env = builder.Environment;
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
+                RequestPath = "/Images"
+            });
+
 
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
@@ -57,6 +66,7 @@ namespace FullStackAuth_WebAPI
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }

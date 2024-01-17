@@ -25,13 +25,35 @@ namespace FullStackAuth_WebAPI.Controllers
         ////    try currentMileage = _carService.GetCu
         ////} ADD GETCURRENTMILEAGE TO MODEL OR CONTROLLER SO IT CAN GIVE RECOMMENRDATION EVERY 5K MILES.
 
+
         // POST api/<ServiceController>
-        [HttpPost("{Id}")]
+        [HttpPost]
         public IActionResult ScheduleService([FromBody] Service service)
         {
-            _context.Service.Add(service);
-            _context.SaveChanges();
-            return StatusCode(201, service);
+            try
+            {
+
+                //if (service== null || carId <=0)
+                //{
+                //    return BadRequest("Invalid Data.");
+                //}
+
+                //var car = _context.Cars.Find(carId);
+                //if (car == null)
+                //{
+                //    return NotFound("Car not found.");
+                //}
+
+                _context.Service.Add(service);
+                _context.SaveChanges();
+
+                return StatusCode(201, service);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+      
         }
 
   

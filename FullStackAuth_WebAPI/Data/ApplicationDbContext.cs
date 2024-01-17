@@ -13,6 +13,8 @@ namespace FullStackAuth_WebAPI.Data
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Service> Service { get; set; }
 
+        public DbSet<Image> Image { get; set; }
+
         public ApplicationDbContext(DbContextOptions options)
     : base(options)
         {

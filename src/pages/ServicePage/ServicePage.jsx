@@ -1,5 +1,5 @@
 import ServiceForm from "../../components/ServiceForm/ServiceForm";
-
+import "./ServicePage.css";
 const ServicePage = () => {
   return (
     <div>

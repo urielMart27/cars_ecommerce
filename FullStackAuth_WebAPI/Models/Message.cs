@@ -8,8 +8,6 @@ namespace FullStackAuth_WebAPI.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-
         [ForeignKey("Sender")]
         public string SenderId { get; set; }
         public User Sender { get; set; }

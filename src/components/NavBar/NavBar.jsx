@@ -11,13 +11,15 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>CarZone</b>
+          <Link to="/" className="carzone-link">
+            <b className="carzone-link">CarZone</b>
           </Link>
           <Link to="/inventory">Inventory</Link>
           <Link to="/newcar">Add Car</Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/service">Service</Link>
+          <Link to="/appointments">Appointments</Link>
+          <Link to="/messages">Messages</Link>
         </li>
         <li>
           {user ? (

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { type } from "@testing-library/user-event/dist/type";
+import useAuth from "../../hooks/useAuth";
+import "./ServiceForm.css";
 
-const ServiceForm = (carId, getCarDetails, token) => {
+const ServiceForm = ({ getCarDetails }) => {
+  const [user, token] = useAuth();
   const [serviceType, setServiceType] = useState("");
   const [serviceDate, setServiceDate] = useState("");
   const [userCars, setUserCars] = useState([]);
-  const [associatedCar, setAssociatedCar] = useState("");
+  const [associatedCarId, setAssociatedCarId] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const serviceTypes = [
@@ -33,20 +35,29 @@ const ServiceForm = (carId, getCarDetails, token) => {
   }, [token]);
 
   const handleSubmit = async (e) => {
-    e.preventdefault();
-    if (!serviceType || !serviceDate || !associatedCar) {
+    e.preventDefault();
+    const serviceData = {
+      serviceType,
+      serviceDate,
+      associatedCarId,
+    };
+
+    console.log(serviceData);
+    if (!serviceType || !serviceDate || !associatedCarId) {
       return;
     }
 
     try {
       setSubmitting(true);
 
+      console.log(associatedCarId);
+
       const response = await axios.post(
-        `https://localhost:5001/api/service/${carId}`,
+        `https://localhost:5001/api/service`,
         {
           serviceType,
           serviceDate,
-          associatedCar,
+          associatedCarId,
         },
         {
           headers: {
@@ -92,14 +103,14 @@ const ServiceForm = (carId, getCarDetails, token) => {
       <label>
         Associated Car:
         <select
-          value={associatedCar}
-          onChange={(e) => setAssociatedCar(e.target.value)}
+          value={associatedCarId}
+          onChange={(e) => setAssociatedCarId(e.target.value)}
         >
           <option value="" disabled>
             Select a Car
           </option>
           {userCars.map((car) => (
-            <option key={carId} value={carId}>
+            <option key={car.id} value={car.id}>
               {car.year} {car.make} {car.model}
             </option>
           ))}

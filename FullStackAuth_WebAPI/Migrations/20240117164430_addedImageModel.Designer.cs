@@ -3,6 +3,7 @@ using System;
 using FullStackAuth_WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240117164430_addedImageModel")]
+    partial class addedImageModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,20 +90,6 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.ToTable("Favorites");
                 });
 
-            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Image");
-                });
-
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -115,6 +104,7 @@ namespace FullStackAuth_WebAPI.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("SenderId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Subject")
@@ -282,13 +272,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "816876ad-89e1-4320-819f-917819492294",
+                            Id = "44b6e204-5e7b-4a15-863b-c92ed0236d6c",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "934dd1dc-4e2f-4d24-b781-2fdf6d20a033",
+                            Id = "4a73a4ff-c700-42bd-8b07-20bdb4d56436",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -422,7 +412,9 @@ namespace FullStackAuth_WebAPI.Migrations
 
                     b.HasOne("FullStackAuth_WebAPI.Models.User", "Sender")
                         .WithMany()
-                        .HasForeignKey("SenderId");
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Recipient");
 

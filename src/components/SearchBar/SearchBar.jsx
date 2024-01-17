@@ -1,23 +1,15 @@
-import React, { useState } from "react";
-import useCustomForm from "../../hooks/useCustomForm";
+import React from "react";
 
-const SearchBar = ({ OnSearch }) => {
-  const [searchInput, setsearchInput] = useState("");
-
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setsearchInput(inputValue);
-    OnSearch(inputValue);
-  };
-
+const SearchBar = ({ searchInput, OnSearch, onChange }) => {
   return (
     <div>
       <input
         type="text"
         placeholder="Search..."
         value={searchInput}
-        onChange={handleInputChange}
+        onChange={onChange}
       />
+      <button onClick={OnSearch}>Search</button>
     </div>
   );
 };
