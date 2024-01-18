@@ -75,7 +75,7 @@ const ServiceForm = ({ getCarDetails }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="service-form">
       <label>
         Service Type:
         <select

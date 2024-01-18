@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./NewCarForm.css";
 
 const NewCarForm = ({}) => {
   const [make, setMake] = useState("");
@@ -30,7 +31,7 @@ const NewCarForm = ({}) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="new-car-form">
       <h4>Add New Car</h4>
       <div>
         <label>Make</label>

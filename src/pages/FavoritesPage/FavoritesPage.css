@@ -1,0 +1,9 @@
+.favorites-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.favorites-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+}

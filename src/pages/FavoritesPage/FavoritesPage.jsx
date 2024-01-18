@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
+import "./FavoritesPage.css";
 
 const FavoritesPage = () => {
   const [user, token] = useAuth();
@@ -23,8 +24,8 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Your Favorites</h2>
+    <div className="favorites-container">
+      <h2 className="favorites-heading">Your Favorites</h2>
       <FavoritesList favorites={favorites} />
     </div>
   );

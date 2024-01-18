@@ -3,7 +3,7 @@ import "./ServicePage.css";
 const ServicePage = () => {
   return (
     <div>
-      <h2>Schedule Service</h2>
+      <h2 className="center-text">Schedule Service</h2>
       <ServiceForm />
     </div>
   );
