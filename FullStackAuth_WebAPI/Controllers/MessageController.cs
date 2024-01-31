@@ -26,14 +26,10 @@ namespace FullStackAuth_WebAPI.Controllers
         {
             try
             {
-                string recipientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
                 var messages = _context.Messages
-                    .Where(m => m.RecipientId == recipientId)
                     .Select(m => new
                     {
                         m.Id,
-                        m.SenderId,
                         m.Subject,
                         m.Content
                     })
@@ -55,19 +51,11 @@ namespace FullStackAuth_WebAPI.Controllers
         {
             try
             {
-                string senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                message.SenderId = senderId;
+                _context.Messages.Add(message);
+                _context.SaveChanges();
 
-                if (_context.Users.Any(u => u.Id == message.RecipientId))
-                {
-                    _context.Messages.Add(message);
-                    _context.SaveChanges();
-                    return StatusCode(201, message);
-                }
-                else
-                {
-                    return BadRequest("Invalid Recipient");
-                }
+                return StatusCode(201, message);
+                
             }
             catch (Exception ex)
             {
@@ -90,10 +78,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     return NotFound("Message not found.");
                 }
 
-                string senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                response.SenderId = senderId;
 
-                originalMessage.Content += $"\n\nEmployee Response:\n{response.Content}";
+                originalMessage.Content += $"\n\nResponse:\n{response.Content}";
                 _context.SaveChanges();
 
                 return Ok(originalMessage);

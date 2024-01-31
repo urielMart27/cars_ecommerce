@@ -1,0 +1,8 @@
+.message-item span {
+    margin-bottom: 5px;
+}
+
+.message-item {
+    display: flex;
+    flex-direction: column;
+}

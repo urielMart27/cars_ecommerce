@@ -1,6 +1,7 @@
+import React, { useState } from "react";
 import axios from "axios";
 
-export default function ImageForm() {
+const ImageForm = ({ carId }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
 
@@ -9,7 +10,9 @@ export default function ImageForm() {
     const formData = new FormData();
 
     formData.append("title", title);
-    formData.append("image_url", image);
+    formData.append("thumbnail_Url", image);
+    formData.append("carId", carId);
+
     try {
       const response = await axios.post(
         "https://localhost:5001/api/image/",
@@ -33,7 +36,6 @@ export default function ImageForm() {
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      {}
       <input
         type="file"
         accept="image/jpeg,image/png,image/gif"
@@ -42,4 +44,6 @@ export default function ImageForm() {
       <button type="submit">Submit Photo</button>
     </form>
   );
-}
+};
+
+export default ImageForm;

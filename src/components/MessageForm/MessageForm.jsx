@@ -1,38 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 import "./MessageForm.css";
 
-const MessageForm = ({ onSendMessage }) => {
+const MessageForm = ({ onNewMessage }) => {
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!subject || !content) {
-      return;
-    }
+    const formData = {
+      content,
+      subject,
+    };
 
     try {
-      await axios.post("https://localhost:5001/api/message/add", {
-        subject,
-        content,
-      });
+      const response = await axios.post(
+        "https://localhost:5001/api/message/add",
+        formData
+      );
 
-      setSubject("");
-      setContent("");
-
-      onSendMessage();
+      if (response.status === 201) {
+        onNewMessage(formData);
+        setSubject("");
+        setContent("");
+      }
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.warn("Error sending message:", error);
     }
   };
 
   return (
     <div className="message-form">
-      <h2>Send a Message</h2>
       <form onSubmit={handleSubmit}>
+        <h2>Send a Message</h2>
         <label className="label">
           Subject:
           <input
@@ -43,10 +44,7 @@ const MessageForm = ({ onSendMessage }) => {
         </label>
         <label className="label">
           Content:
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          <input value={content} onChange={(e) => setContent(e.target.value)} />
         </label>
         <button type="submit" className="button">
           Send

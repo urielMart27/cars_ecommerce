@@ -12,6 +12,7 @@ import CarInventoryPage from "./pages/CarInventoryPage/CarInventoryPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import ServicePage from "./pages/ServicePage/ServicePage";
 import AppointmentsPage from "./pages/AppointmentsPage/AppointmentsPage";
+import MessagesPage from "./pages/MessagesPage/MessagesPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -19,7 +20,7 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import MessagesPage from "./pages/MessagesPage/MessagesPage";
+import ImageUploadPage from "./pages/ImageUploadPage/ImageUploadPage";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/service" element={<ServicePage />} />
         <Route path="/appointments" element={<AppointmentsPage />} />
         <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/image-upload" element={<ImageUploadPage />} />
       </Routes>
       <Footer />
     </div>

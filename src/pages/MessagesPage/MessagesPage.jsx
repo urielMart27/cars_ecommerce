@@ -6,6 +6,11 @@ import axios from "axios";
 const MessagesPage = () => {
   const [messages, setMessages] = useState([]);
 
+  const handleNewMessage = (newMessage) => {
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
+  };
+
   const fetchMessages = async () => {
     try {
       const response = await axios.get("https://localhost:5001/api/message");
@@ -19,15 +24,15 @@ const MessagesPage = () => {
     fetchMessages();
   }, []);
 
-  const handleSendMessage = () => {
-    fetchMessages();
+  const handleMessageResponse = async (messageId) => {
+    console.log("Responding to message with ID:", messageId);
   };
 
   return (
     <div>
       <h1>Messages Page</h1>
       <MessagesList messages={messages} />
-      <MessageForm onSendMessage={handleSendMessage} />
+      <MessageForm onNewMessage={handleNewMessage} />
     </div>
   );
 };
